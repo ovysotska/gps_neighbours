@@ -1,7 +1,7 @@
 #include "gps_neighbour.h"
 using namespace std;
 
-void Database::read_images(string img_name_file)
+void Database::read_images(const string &img_name_file)
 {
     string img_name;
     ifstream in(img_name_file.c_str());
@@ -20,14 +20,14 @@ void Database::read_images(string img_name_file)
     }
 }
 
-void Database::read_timestamps(string timestamp_file)
-{ 
+void Database::read_timestamps(const string &timestamp_file)
+{
     double timestamp;
     ifstream in(timestamp_file.c_str());
     if(!in)
     {
         cout<<"Unable to open a file \n" << timestamp_file << endl;
-    } 
+    }
     else
     {
         while ( !in.eof() )
@@ -52,27 +52,25 @@ double string_to_double(string s)
 
 // function read a file , where each line has such a format:
 //     time=1355314012.609550,utctime=[3x1]{11,4,38},lat=48.007660,lon=7.828823,qual=1,sats=10,hdop=0.8
-void Database::read_gps(string gps_file)
+void Database::read_gps(const string &gps_file)
 {
-    double lat, lon;
     string line;
     ifstream in(gps_file.c_str());
     if(!in)
     {
         cout<<"Unable to open a file \n\"" << gps_file << "\"" << endl;
-    } 
+    }
     else
-    {   
+    {
         // read the file
         while( !in.eof() )
         {
-            int x;
             string line;
-            in >> line;     
+            in >> line;
             typedef boost::tokenizer<boost::char_separator<char> >  Tokenizer;
             boost::char_separator<char> sep(",");
             Tokenizer tokens(line, sep);
-            BOOST_FOREACH (const string& t, tokens) 
+            BOOST_FOREACH (const string& t, tokens)
             {
                 boost::char_separator<char> s("=");
                 Tokenizer tok(t, s);
@@ -100,7 +98,10 @@ void Database::read_gps(string gps_file)
     }
 }
 
-void Database::init(string img_name_file, string timestamp_file, string gps_file)
+void Database::init(
+        const std::string &img_name_file,
+        const std::string &timestamp_file,
+        const std::string &gps_file)
 {
     read_images(img_name_file);
     read_timestamps(timestamp_file);
