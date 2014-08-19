@@ -1,4 +1,5 @@
 #include "gps_neighbour.h"
+#include <iomanip>
 using namespace std;
 
 void Database::read_images(const string &img_name_file)
@@ -108,4 +109,56 @@ void Database::init(
     read_gps(gps_file);
 
     cout<< "Number of images: "<< img_names_.size() << " timestamps size " << img_times_.size() << endl;
+}
+
+void Database::relate_gps2img()
+{
+    int gps_idx = 0;
+    for(int i = 0; i < img_times_.size(); i++)
+    {
+        while( floor(img_times_[i]) > floor(gps_times_[gps_idx]))
+        {
+            gps_idx++;
+        }
+        img_lon_.push_back(gps_lon_[gps_idx]);
+        img_lat_.push_back(gps_lat_[gps_idx]);
+    }
+    img_times_.clear();
+    gps_lon_.clear();
+    gps_lat_.clear();
+    gps_times_.clear();
+}
+
+void Database::find_img_in_km(double lat, double lon,  double km,  std::vector<std::string> &img_in_range)
+{
+    double lat_start,lon_start, lat_finish, lon_finish;
+    lat_start = lat - km * KM2LAT;
+    lat_finish = lat + km * KM2LAT;
+    lon_start = lon - km * KM2LON;
+    lon_finish = lon + km * KM2LON;
+    cout << lat_start << " < " << lat << " < " << lat_finish << endl;
+    cout << lon_start << " < " << lon << " < " << lon_finish << endl;
+
+    if (img_lat_.size() != img_lon_.size())
+    {
+        cout << "Wrong GPS data. "<<endl;
+        exit(0);
+    }
+    if (img_lat_.size() != img_names_.size())
+    {
+        cout << "Wrong GPS data image names assosiations "<<endl;
+        exit(0);
+    }
+    for(int i=0; i < img_lat_.size(); i++)
+    {
+        // if both measurements are in square of 'km' kilometers
+        if ( (lat_start <= img_lat_[i] &&  img_lat_[i] <= lat_finish) &&
+            (lon_start <= img_lon_[i] && img_lon_[i] <= lon_finish) )
+        {
+            img_in_range.push_back(img_names_[i]);
+            cout << "Chosen image: "<< img_names_[i];
+            cout << "\t with  lat: "<< img_lat_[i] << " and lon: " << img_lon_[i] << endl;
+        }
+    }
+    cout<< "Total "<< img_in_range.size() << " images were chosen out of " << img_names_.size() << endl;
 }
