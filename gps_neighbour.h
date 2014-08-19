@@ -10,20 +10,24 @@
 #include <boost/tokenizer.hpp>
 
 
-struct Database
+class Database
 {
+public:
     std::vector<std::string> img_names_;
     std::vector<double> img_times_;
     std::vector<double> gps_lon_;
     std::vector<double> gps_lat_;
     std::vector<double> gps_times_;
 
-    void init(std::string img_name_file, std::string timestamp_file, std::string gps_file);
+    void init(
+        const std::string &img_name_file,
+        const std::string &timestamp_file,
+        const std::string &gps_file);
 
 private:
-	void read_images(std::string img_name_file);
-	void read_timestamps(std::string timestamp_file);
-	void read_gps(std::string gps_file);
+	void read_images(const std::string &img_name_file);
+	void read_timestamps(const std::string &timestamp_file);
+	void read_gps(const std::string &gps_file);
 
 };
 
