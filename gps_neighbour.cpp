@@ -129,25 +129,25 @@ void Database::relate_gps2img()
     gps_times_.clear();
 }
 
-void Database::find_img_in_km(double lat, double lon,  double km,  std::vector<std::string> &img_in_range)
+void Database::find_img_in_km(double lat, double lon,  double range,  vector<int> &img_idx)
 {
     double lat_start,lon_start, lat_finish, lon_finish;
-    lat_start = lat - km * KM2LAT;
-    lat_finish = lat + km * KM2LAT;
-    lon_start = lon - km * KM2LON;
-    lon_finish = lon + km * KM2LON;
-    cout << lat_start << " < " << lat << " < " << lat_finish << endl;
-    cout << lon_start << " < " << lon << " < " << lon_finish << endl;
+    lat_start = lat - range * KM2LAT;
+    lat_finish = lat + range * KM2LAT;
+    lon_start = lon - range * KM2LON;
+    lon_finish = lon + range * KM2LON;
+    // cout << lat_start << " < " << lat << " < " << lat_finish << endl;
+    // cout << lon_start << " < " << lon << " < " << lon_finish << endl;
 
     if (img_lat_.size() != img_lon_.size())
     {
         cout << "Wrong GPS data. "<<endl;
-        exit(0);
+        return;
     }
     if (img_lat_.size() != img_names_.size())
     {
         cout << "Wrong GPS data image names assosiations "<<endl;
-        exit(0);
+        return;
     }
     for(int i=0; i < img_lat_.size(); i++)
     {
@@ -155,10 +155,45 @@ void Database::find_img_in_km(double lat, double lon,  double km,  std::vector<s
         if ( (lat_start <= img_lat_[i] &&  img_lat_[i] <= lat_finish) &&
             (lon_start <= img_lon_[i] && img_lon_[i] <= lon_finish) )
         {
-            img_in_range.push_back(img_names_[i]);
-            cout << "Chosen image: "<< img_names_[i];
-            cout << "\t with  lat: "<< img_lat_[i] << " and lon: " << img_lon_[i] << endl;
+            // img_in_range.push_back(img_names_[i]);
+            img_idx.push_back(i);
         }
     }
-    cout<< "Total "<< img_in_range.size() << " images were chosen out of " << img_names_.size() << endl;
+    cout<< " "<< img_idx.size() << " images were chosen out of " << img_names_.size() << endl;
+}
+
+//TODO: maybe this can be done better. 
+void deleteDuplicates(vector<int> &v)
+{
+    std::sort(v.begin(), v.end()); 
+    std::vector<int>::iterator it;
+    it = std::unique (v.begin(), v.end());   
+    v.resize( std::distance(v.begin(),it) ); 
+}
+
+void Database::find_neigh( std::vector<double> lat,
+                            std::vector<double> lon,
+                            std::vector<std::string> &img_in_range,
+                            double range)
+{
+    if(lat.size() != lon.size())
+    {
+        cout << "The GPS data is not consistent"<<endl;
+        return;
+    }
+    vector<int> idx, img_idx;
+    for( int i = 0; i < lat.size(); i++)
+    {
+        cout << "For Query image: " << i << endl;
+        find_img_in_km(lat[i], lon[i], range, idx);
+        img_idx.insert(img_idx.end(), idx.begin(), idx.end());      //appending one vector to another
+        deleteDuplicates(img_idx);
+        idx.clear();
+    }
+
+    cout<< "Total "<< img_idx.size() << " images were chosen out of " << img_names_.size() << endl;
+    for(int i=0; i < img_idx.size(); i++)
+    {
+        img_in_range.push_back(img_names_[img_idx[i]]);
+    }
 }

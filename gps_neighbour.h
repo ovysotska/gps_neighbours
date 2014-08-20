@@ -19,6 +19,27 @@
 class Database
 {
 public:
+    void init(
+        const std::string &img_name_file,
+        const std::string &timestamp_file,
+        const std::string &gps_file);
+    void relate_gps2img();
+    void find_neigh(
+        std::vector<double> lat,
+        std::vector<double> lon,
+        std::vector<std::string> &img_in_range,
+        double range);
+
+private:
+	void read_images(const std::string &img_name_file);
+	void read_timestamps(const std::string &timestamp_file);
+	void read_gps(const std::string &gps_file);
+    void find_img_in_km(
+        double lat, 
+        double lon, 
+        double km, 
+        std::vector<int> &img_idx);
+
     std::vector<std::string> img_names_;
     std::vector<double> img_times_;
     std::vector<double> gps_lon_;
@@ -26,23 +47,6 @@ public:
     std::vector<double> gps_times_;
     std::vector<double> img_lon_;
     std::vector<double> img_lat_;
-
-    void init(
-        const std::string &img_name_file,
-        const std::string &timestamp_file,
-        const std::string &gps_file);
-    void relate_gps2img();
-    void find_img_in_km(
-        double lat, 
-        double lon, 
-        double km, 
-        std::vector<std::string> &img_in_range);
-
-private:
-	void read_images(const std::string &img_name_file);
-	void read_timestamps(const std::string &timestamp_file);
-	void read_gps(const std::string &gps_file);
-
 
 };
 
