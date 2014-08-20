@@ -1,6 +1,8 @@
 #include "gps_neighbour.h"
-#include <iomanip>
+#include <iomanip>          // for cout precision
 using namespace std;
+
+//TODO: check the neigbouring based on distance
 
 void Database::read_images(const string &img_name_file)
 {
@@ -94,7 +96,7 @@ void Database::read_gps(const string &gps_file)
 
             }
         }
-        cout <<"Everything is read: times: " << gps_times_.size() << " lat " << gps_lat_.size() << " lon "<< gps_lon_.size()<< endl;
+        cout <<"GPS data is read: times: " << gps_times_.size() << " lat " << gps_lat_.size() << " lon "<< gps_lon_.size()<< endl;
         in.close();
     }
 }
@@ -107,8 +109,10 @@ void Database::init(
     read_images(img_name_file);
     read_timestamps(timestamp_file);
     read_gps(gps_file);
-
     cout<< "Number of images: "<< img_names_.size() << " timestamps size " << img_times_.size() << endl;
+
+    relate_gps2img();
+    cout << "GPS coordinates were related to the images" << endl;
 }
 
 void Database::relate_gps2img()
@@ -196,4 +200,11 @@ void Database::find_neigh( std::vector<double> lat,
     {
         img_in_range.push_back(img_names_[img_idx[i]]);
     }
+}
+
+void Database::get_img_coord(vector<double> &img_lat,
+        vector<double> &img_lon)
+{
+    img_lon = img_lon_;
+    img_lat = img_lat_;
 }
