@@ -116,7 +116,7 @@ void FileBinder::init(
     cout<< "Number of images: "<< img_names_.size() << " timestamps size " << img_times_.size() << endl;
 }
 
-void FileBinder::relate_gps2img(const string &file_out)
+void FileBinder::relate_gps_to_img()
 {
     int gps_idx = 0;
     for(int i = 0; i < img_times_.size(); i++)
@@ -133,7 +133,6 @@ void FileBinder::relate_gps2img(const string &file_out)
     gps_lat_.clear();
     gps_times_.clear();
     cout << "GPS coordinates were related to the images" << endl;
-    write_to_file(file_out);
 }
 
 
@@ -149,7 +148,7 @@ void FileBinder::write_to_file(const string &file_name)
         }
         for(int i = 0; i < img_lon_.size(); i++)
         {
-            out << img_lon_[i] << "\t" << img_lat_[i] << endl;
+            out << img_names_[i] << "\t" << img_lon_[i] << "\t" << img_lat_[i] << endl;
         }
         cout << "Image GPS coordinates were written to: " << file_name << endl; 
     }

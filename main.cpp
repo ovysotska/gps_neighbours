@@ -21,7 +21,10 @@ int main()
 
     FileBinder winter_db, summer_db;
     winter_db.init(DATA_DIR_W + "pictures_names_Cam0_sort", DATA_DIR_W + "pictures_timestamp", DATA_DIR_W + "winter_gps.txt");
-    summer_db.init(DATA_DIR_S + "pictures_names_Cam0_sort", DATA_DIR_S + "pictures_timestamp", DATA_DIR_S + "summer_gps.txt");
+    winter_db.relate_gps_to_img();
+    winter_db.write_to_file("../results/img_gps.txt");
+
+    // summer_db.init(DATA_DIR_S + "pictures_names_Cam0_sort", DATA_DIR_S + "pictures_timestamp", DATA_DIR_S + "summer_gps.txt");
 
 
     cout << "\t Done." << endl;
