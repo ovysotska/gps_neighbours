@@ -126,6 +126,7 @@ void print_neighbours(std::vector<std::string> &img_in_range, const string &file
         out << img_in_range[i] << endl;
     }
     out.close();
+    cout << "The neighbouring image names were written to " << filename << endl;
 }
 
 

@@ -4,20 +4,36 @@
 #include <vector>
 #include <string>
 #include <math.h>
+#include <stdlib.h>     /* atof */
 
-#define RANGE 0.2
+// #define RANGE 1.0
 
 using namespace std;
 
-//TODO: pass paramerters from script as [argv, argc]
-// const string DATA_DIR_W = "/home/olga/projects/sceneMatching_local/freiburgcar-seasons/log_12_12_2012_____12_56_59/";
-// const string DATA_DIR_S = "/home/olga/projects/sceneMatching_local/freiburgcar-seasons/log_24_5_2012_____11_11_47/";
-const string DATA_DIR = "../results/";
+// const string DATA_DIR = "../results/";
 
 
-int main()
+int main(int argc, char *argv[])
 {
+    if(argc < 3 || argc > 3)
+    {
+        cerr << "./gps_neighbour RANGE NEIGH_OUT_FILENAME" << endl;
+
+        cout << "RANGE: range for neighbour search, km" << endl;
+        cout << "NEIGH_OUT_FILENAME: the filename, where the neigbouring image names will be stored" << endl;
+        return 0;
+
+    }
     cout << "\t Searching for the nearest images based on GPS" << endl;
+    const double RANGE = atof(argv[1]);
+    const string DATA_DIR = argv[2];
+
+    cout << "You have specified:" << endl;
+    cout << "NEIGH_OUT_FILENAME: " << DATA_DIR << endl;
+    cout << "RANGE: " << RANGE << endl;
+
+
+
     GPSNeighbour data_w, data_s;
     data_w.init_db(DATA_DIR + "img_gps_winter.txt");
     data_s.init_db(DATA_DIR + "img_gps_summer.txt");
@@ -30,4 +46,5 @@ int main()
 
 
     cout << "\t Done." << endl;
+    return 0;
 }
