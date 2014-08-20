@@ -17,9 +17,7 @@ class FileBinder
         const std::string &img_name_file,
         const std::string &timestamp_file,
         const std::string &gps_file);
- 
-    void get_img_coord(std::vector<double> &img_lat,
-        std::vector<double> &img_lon);
+
     void relate_gps_to_img();
     void write_to_file(const std::string &file_name);
 

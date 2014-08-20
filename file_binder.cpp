@@ -151,6 +151,7 @@ void FileBinder::write_to_file(const string &file_name)
             out << img_names_[i] << "\t" << img_lon_[i] << "\t" << img_lat_[i] << endl;
         }
         cout << "Image GPS coordinates were written to: " << file_name << endl; 
+        out.close();
     }
     else
     {
