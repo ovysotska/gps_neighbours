@@ -1,5 +1,8 @@
 #include "file_binder.h"
+#include "list_dir.h"
+
 #include <iomanip>          // for cout precision
+#include <ctime>
 using namespace std;
 
 
@@ -15,6 +18,11 @@ double string_to_double(string s)
     return value;
 }
 
+void img_cut_path(string &img_name)
+{
+    unsigned pos = img_name.find_last_of("/");
+    img_name = img_name.substr(pos+1);
+}
 
 
 void FileBinder::read_images(const string &img_name_file)
@@ -26,6 +34,7 @@ void FileBinder::read_images(const string &img_name_file)
         while ( !in.eof() )
         {
             in >> img_name;
+            img_cut_path(img_name);
             img_names_.push_back(img_name);
         }
         in.close();
@@ -100,7 +109,6 @@ void FileBinder::read_gps(const string &gps_file)
 
             }
         }
-        cout <<"GPS data is read: times: " << gps_times_.size() << " lat " << gps_lat_.size() << " lon "<< gps_lon_.size()<< endl;
         in.close();
     }
 }
@@ -113,7 +121,7 @@ void FileBinder::init(
     read_images(img_name_file);
     read_timestamps(timestamp_file);
     read_gps(gps_file);
-    cout<< "Number of images: "<< img_names_.size() << " timestamps size " << img_times_.size() << endl;
+    cout << "Init DONE. \t images: "<< img_names_.size() << "\t GPS coord: "<< gps_lon_.size() << endl;
 }
 
 void FileBinder::relate_gps_to_img()
@@ -148,7 +156,7 @@ void FileBinder::write_to_file(const string &file_name)
         }
         for(int i = 0; i < img_lon_.size(); i++)
         {
-            out << img_names_[i] << "\t" << img_lon_[i] << "\t" << img_lat_[i] << endl;
+            out << img_names_[i] << "\t" << img_lat_[i] << "\t" << img_lon_[i] << endl;
         }
         cout << "Image GPS coordinates were written to: " << file_name << endl; 
         out.close();
@@ -158,4 +166,30 @@ void FileBinder::write_to_file(const string &file_name)
         cout << "Unable to open a file "<< file_name << endl;
         return;
     }
+}
+
+void FileBinder::bind_from_folder(const string &folder_path, const string &out_bind_file)
+{
+    vector<string> img_in_folder;
+    listDir(folder_path, img_in_folder);
+    ofstream out(out_bind_file.c_str());
+    if(!out)
+    {
+        cout << "Couldn't open a file: "<< out_bind_file << endl;
+        return;
+    }
+    for(int i=0; i < img_in_folder.size(); i++)
+    {
+        for(int j=0; j < img_names_.size(); j++)
+        {
+            if(img_in_folder[i] == img_names_[j])
+            {
+                out << img_names_[j] << "\t" << img_lat_[j] << "\t" << img_lon_[j] << endl;
+                j=i+1;
+                break;
+            }
+        }
+    }
+    cout << "Images and GPS coordinates were written to: " << out_bind_file << endl;
+    out.close();
 }

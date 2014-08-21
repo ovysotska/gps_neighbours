@@ -12,7 +12,7 @@
 
 class FileBinder
 {
-	public:
+public:
     void init(
         const std::string &img_name_file,
         const std::string &timestamp_file,
@@ -20,6 +20,9 @@ class FileBinder
 
     void relate_gps_to_img();
     void write_to_file(const std::string &file_name);
+    void bind_from_folder(
+        const std::string &folder_path, 
+        const std::string &out_bind_file);
 
 private:
 	void read_images(const std::string &img_name_file);
