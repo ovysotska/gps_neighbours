@@ -6,16 +6,13 @@
 #include <math.h>
 #include <stdlib.h>     /* atof */
 
-// #define RANGE 1.0
 
 using namespace std;
-
-// const string DATA_DIR = "../results/";
 
 
 int main(int argc, char *argv[])
 {
-    if(argc < 3 || argc > 3)
+    if(argc != 3)
     {
         cerr << "./gps_neighbour RANGE NEIGH_OUT_FILENAME" << endl;
 
