@@ -1,0 +1,516 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"gp",
+				"gps_lon_"
+			],
+			[
+				"fol",
+				"folder_name"
+			],
+			[
+				"clock",
+				"clock_t"
+			],
+			[
+				"out",
+				"out_bind_file"
+			],
+			[
+				"im",
+				"img_in_folder"
+			],
+			[
+				"img_nam",
+				"img_names_"
+			],
+			[
+				"img_na",
+				"img_names_"
+			],
+			[
+				"img",
+				"img_cut_path"
+			],
+			[
+				"GP",
+				"GPS_FILE"
+			],
+			[
+				"img_name",
+				"img_name"
+			],
+			[
+				"i",
+				"img_names_file"
+			],
+			[
+				"ar",
+				"argv"
+			],
+			[
+				"D",
+				"DATA_DIR"
+			],
+			[
+				"lon",
+				"lon_s"
+			],
+			[
+				"lat",
+				"lat_s"
+			],
+			[
+				"data",
+				"data_s"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"GPS",
+				"GPSNeighbour"
+			],
+			[
+				"fiel",
+				"file_name"
+			],
+			[
+				"summer",
+				"summer_db"
+			],
+			[
+				"lon_",
+				"lon_finish"
+			],
+			[
+				"la",
+				"img_lat_"
+			],
+			[
+				"lo",
+				"lon_start"
+			],
+			[
+				"gps_",
+				"gps_times_"
+			],
+			[
+				"winter",
+				"winter_db"
+			],
+			[
+				"gps",
+				"gps_idx"
+			],
+			[
+				"str",
+				"string_to_double"
+			],
+			[
+				"t",
+				"tok_iter"
+			],
+			[
+				"is",
+				"is_line"
+			],
+			[
+				"co",
+				"compare"
+			],
+			[
+				"read",
+				"read_images"
+			],
+			[
+				"ti",
+				"timestamps_"
+			],
+			[
+				"tim",
+				"timestamp_file"
+			],
+			[
+				"dat",
+				"data_dir"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "gps_neighbour.cpp",
+			"settings":
+			{
+				"buffer_size": 3990,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "gps_neighbour.h",
+			"settings":
+			{
+				"buffer_size": 1085,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main_gps_neighbour.cpp",
+			"settings":
+			{
+				"buffer_size": 1378,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 348.0,
+		"selected_items":
+		[
+			[
+				"Package",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/scripts/run_hog.sh",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/scripts/vis_hog.sh",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/scripts/run_graphmatching.sh",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/run_scripts/run_gps_neighbour.sh",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/run_scripts/run_file_binder.sh",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/hogvis/file_reader.h",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/hogvis/file_reader.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/main_file_binder.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/file_binder.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/file_binder.h",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/list_dir.h",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/main_gps_neighbour.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/gps_neighbour.cpp",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/hogvis/main.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/results/winter_in_range.txt",
+		"/home/olga/projects/sceneMatching_local/gps_file_binder/file_parser.sublime-project",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/CMakeLists.txt",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/main.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/gps_neighbour.h",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/file_parser.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/file_parser.h",
+		"/home/olga/projects/sceneMatching_local/freiburgcar-seasons/testData/make_movie.sh",
+		"/home/olga/projects/sceneMatching_local/freiburgcar-seasons/testData/database_winter/simple_movie.sh",
+		"/home/olga/projects/sceneMatching_local/freiburgcar-seasons/log_12_12_2012_____12_56_59/simple_movie.sh",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/graphmatching/src/season-graphmatching-aaai.cpp",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/graphmatching/src/graph_connections-aaai.cpp",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/results/neigh_images.txt",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/readme.txt",
+		"/home/olga/projects/sceneMatching_local/gps_neighbours/README.md",
+		"/home/olga/projects/sceneMatching_local/code_Tayyab/hogmatch/main.cpp",
+		"/home/olga/projects/sceneMatching_local/freiburgcar-seasons/log_12_12_2012_____12_56_59/winter_gps.txt",
+		"/home/olga/projects/sceneMatching_local/freiburgcar-seasons/log_12_12_2012_____12_56_59/pictures_timestamp",
+		"/home/olga/projects/sceneMatching/graph_matching/graph.h",
+		"/home/olga/projects/sceneMatching/graph_matching/graph.cpp",
+		"/home/olga/projects/sceneMatching/graph_matching/main.cpp",
+		"/home/olga/projects/sceneMatching/graph_matching/CMakeLists.txt",
+		"/home/olga/projects/sceneMatching/gpsNeighbour/CMakeLists.txt",
+		"/home/olga/projects/sceneMatching/gpsNeighbour/main.cpp",
+		"/home/olga/projects/sceneMatching/gpsNeighbour/gps_neighbour.cpp",
+		"/home/olga/projects/sceneMatching/gpsNeighbour/gps_neighbour.h",
+		"/home/olga/projects/sceneMatching/gpsNeighbour/build/CMakeLists.txt",
+		"/home/olga/projects/sceneMatching/gpsNeighbour/build/run.sh",
+		"/home/olga/projects/sceneMatching/gpsNeighbour/gpsNeighbour.cpp",
+		"/home/olga/projects/sceneMatching/code_Tayyab/graphmatching/src/season-graphmatching-aaai.cpp",
+		"/home/olga/projects/sceneMatching/code_Tayyab/scripts/unitTest.sh",
+		"/home/olga/projects/small_projects/dag_boost_example/dag_boost_example.cpp",
+		"/home/olga/projects/sceneMatching/code_Tayyab/hogmatch/main.cpp",
+		"/home/olga/projects/sceneMatching/code_Tayyab/scripts/run_graphmatching.sh",
+		"/home/olga/projects/sceneMatching/code_Tayyab/scripts/vis_hog.sh",
+		"/home/olga/projects/sceneMatching/code_Tayyab/scripts/run_hog.sh",
+		"/home/olga/projects/sceneMatching/code_Tayyab/hogvis/main.cpp",
+		"/home/olga/projects/sceneMatching/code_Tayyab/graphmatching/src/graph_connections-aaai.h",
+		"/home/olga/projects/sceneMatching/code_Tayyab/graphmatching/CMakeLists.txt",
+		"/home/olga/.bashrc",
+		"/home/olga/projects/sceneMatching/code_Tayyab/graphmatching/src/graph_connections-aaai.cpp",
+		"/home/olga/projects/sceneMatching/code_Tayyab/hogmatch/CMakeLists.txt",
+		"/home/olga/bash.rc"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"winter_db",
+			"FileParser",
+			"PARSER",
+			"Database",
+			"gps_neighbour",
+			"Database",
+			"string_to_double",
+			"DATA_RID_W",
+			"+ ",
+			"DATA_RID_W +",
+			"DATA_RID_W ",
+			"DATA_RID_W",
+			"DATA_DIR_W",
+			"sceneMatching",
+			"myvector",
+			"km",
+			"KM",
+			"km",
+			"KM",
+			"km",
+			"KM",
+			"km",
+			"timestamps_",
+			"string",
+			"vector",
+			"myfile",
+			"db_size",
+			"vis",
+			"default_dijkstra_visitor",
+			"add_edge",
+			"connect_graph->connectnodes",
+			"set_match_threshold",
+			"QT_QMAKE",
+			"Qt",
+			"build",
+			"main"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "gps_neighbour.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "gps_neighbour.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "main_gps_neighbour.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1378,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1069,
+								1069
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "gps_neighbours.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 301.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

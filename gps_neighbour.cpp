@@ -85,10 +85,11 @@ void GPSNeighbour::find_img_in_km(double lat, double lon,  double range,  vector
 }
 
 
-
+// returns the indices of the images from the database that were chosen as neighbours
+//TODO: rewrite this, to store for each query its own neighbours
 void GPSNeighbour::find_neighbours( std::vector<double> &lat,
                             std::vector<double> &lon,
-                            std::vector<std::string> &img_in_range,
+                            std::vector<int> &img_idx,
                             double range)
 {
     if(lat.size() != lon.size())
@@ -96,7 +97,7 @@ void GPSNeighbour::find_neighbours( std::vector<double> &lat,
         cout << "The GPS data is not consistent"<<endl;
         return;
     }
-    vector<int> idx, img_idx;
+    vector<int> idx;
     for( int i = 0; i < lat.size(); i++)
     {
         cout << "For Query image: " << i << "\t";
@@ -107,13 +108,9 @@ void GPSNeighbour::find_neighbours( std::vector<double> &lat,
     }
 
     cout<< "Total "<< img_idx.size() << " images were chosen out of " << img_names_.size() << endl;
-    for(int i=0; i < img_idx.size(); i++)
-    {
-        img_in_range.push_back(img_names_[img_idx[i]]);
-    }
 }
 
-void print_neighbours(std::vector<std::string> &img_in_range, const string &filename)
+void GPSNeighbour::print_neighbours(std::vector<int> &idx_in_range, const string &filename)
 {
     ofstream out(filename.c_str());
     if(!out)
@@ -121,9 +118,9 @@ void print_neighbours(std::vector<std::string> &img_in_range, const string &file
         cout << "File " << filename << "have NOT been opened. No neighbours are stored"<<endl;
         return;
     }
-    for(int i = 0; i < img_in_range.size(); i++)
+    for(vector<int>::iterator iter = idx_in_range.begin(); iter != idx_in_range.end(); ++iter)
     {
-        out << img_in_range[i] << endl;
+        out << img_names_[*iter] << "\t" << img_lat_[*iter] << "\t" << img_lon_[*iter] << endl;
     }
     out.close();
     cout << "The neighbouring image names were written to " << filename << endl;

@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
     cout << "\t output_file: " << OUT_FILE << endl << endl;
 
 
-    FileBinder winter_db, summer_db;
-    winter_db.init(NAMES_FILE, TIMES_FILE, GPS_FILE);
-    winter_db.relate_gps_to_img();
+    FileBinder file_binder;
+    file_binder.init(NAMES_FILE, TIMES_FILE, GPS_FILE);
+    file_binder.relate_gps_to_img();
 
 
     if(argc == 6)
@@ -48,11 +48,11 @@ int main(int argc, char *argv[])
     	const string FOLDER_NAME = argv[5];
     	cout << "\nBinding with a folder..." << endl;
     	cout << "\t folder_name: " << FOLDER_NAME << endl;
-    	winter_db.bind_from_folder(FOLDER_NAME, OUT_FILE);
+    	file_binder.bind_from_folder(FOLDER_NAME, OUT_FILE);
     }
     else
     {
-    	winter_db.write_to_file(OUT_FILE);
+    	file_binder.write_to_file(OUT_FILE);
     }
 
     cout << "\n\t DONE." << endl;
