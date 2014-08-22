@@ -1,21 +1,24 @@
 program 'gps_neighbour'
 
-This programs reads the log files and assosiate with each image the GPS coordinates, where it potentially could have been done.
-For running a program one would need:
+The program is composed from two independent parts.
 
-Files
- - DATA_DIR_W - directory, where the first database of images and coordinates are stored (here winter dataset)
- - DATA_DIR_S - directory, where the second database of images and coordinates are stored (here summer dataset)
+First part. File Binder
 
-<< winter_db.init(DATA_DIR_W + "pictures_names_Cam0_sort", DATA_DIR_W + "pictures_timestamp", DATA_DIR_W + "winter_gps.txt"); >>
+The program is used to bind the separate files information.
+It assossiates the gps coordinates to each obtained image via corresponding timestamps.
+To run the program one would need to specify the following files:
+	"img_names_file" - names of the images
+	"img_time_file" - timestamps of the images
+	"gps_file" - gps coordinates and corresponding timestamps (in special format)
+    "output_file" -  output filename
+RETURN: text file with image names and corresponding latitude lontitude
 
-	"pictures_names_Cam0_sort" -  name of the file, where the names of the images are stored
-	"pictures_timestamp"       -  name of the file, where the timestamps of the images are stored.
-	"winter_gps.txt"           -  name of the file, where the GPS info in format:	
-				"time=1355314012.609550,utctime=[3x1]{11,4,38},lat=48.007660,lon=7.828823,qual=1,sats=10,hdop=0.8" is stored.
+Second part. GPS Neighbour
 
-What it does?
-
-1) Read the files.
-2) Relate the gps coordinates to images via timestamp
-3) For a second database of images searches for the images in first database, which are located in range of RANGE.
+The programm searches in specified database the image, which are in range of query image(s).
+INPUT:
+	"RANGE"  - range (km) in which the images should be searched 
+	"DB_file" - file with images and GPS coordinates
+	"QRY_file" - file with images and GPS coordinates
+	"OUT_file" - the name of the output file
+RETURN: the text file with images and GPS coordinates, that are in RANGE.
