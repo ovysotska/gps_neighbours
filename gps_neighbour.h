@@ -21,11 +21,14 @@ public:
     void find_neighbours(
         std::vector<double> &lat,
         std::vector<double> &lon,
-        std::vector<int> &idx_in_range,
+        std::vector<std::vector<int> > &qu_neighs,
         double range);
     void get_img_coord(std::vector<double> &img_lat,
         std::vector<double> &img_lon);
-    void print_neighbours(std::vector<int> &idx_in_range, const std::string &filename);
+    void print_neighbours_full(std::vector< std::vector<int> > &qu_neighs, const std::string &filename);
+    void write_query_neighbours(
+        std::vector<std::vector<int> > &qu_neighs,
+        const std::string &filename);
 
 private:
     void find_img_in_km(

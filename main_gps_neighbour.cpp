@@ -44,10 +44,10 @@ int main(int argc, char *argv[])
 
     vector<double> lat_s, lon_s;
     data_s.get_img_coord(lat_s, lon_s);
-    std::vector<int> idx_in_range;
+    std::vector< std::vector<int> > idx_in_range;
     data_w.find_neighbours( lat_s, lon_s, idx_in_range, RANGE);
-    data_w.print_neighbours(idx_in_range, OUT_file);
-
+    // data_w.print_neighbours_full(idx_in_range, OUT_file);
+    data_w.write_query_neighbours(idx_in_range, OUT_file);
 
     cout << "\t DONE." << endl;
     return 0;

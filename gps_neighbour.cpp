@@ -40,12 +40,17 @@ void GPSNeighbour::init_db(const string &filename)
         string name;
         double lat, lon;
         in >> name >> lat >> lon;
-        img_names_.push_back(name);
-        img_lat_.push_back(lat);
-        img_lon_.push_back(lon);
+        if(name != "")
+        {
+            img_names_.push_back(name);
+            img_lat_.push_back(lat);
+            img_lon_.push_back(lon);
+        }
+
     }
     cout << "Image names and gps were read."<<endl;
-    // cout << img_names_.size() << "\t" << img_lat_.size() << "\t" << img_lon_.size() << endl;
+    cout << img_names_.size() << "\t" << img_lat_.size() << "\t" << img_lon_.size() << endl;
+
     in.close();
 }
 
@@ -79,6 +84,10 @@ void GPSNeighbour::find_img_in_km(double lat, double lon,  double range,  vector
         {
             // img_in_range.push_back(img_names_[i]);
             img_idx.push_back(i);
+            if(i > 92)
+            {
+                cerr << "Out of range" << endl;
+            }
         }
     }
     cout<< " "<< img_idx.size() << " images were chosen out of " << img_names_.size() << endl;
@@ -89,7 +98,7 @@ void GPSNeighbour::find_img_in_km(double lat, double lon,  double range,  vector
 //TODO: rewrite this, to store for each query its own neighbours
 void GPSNeighbour::find_neighbours( std::vector<double> &lat,
                             std::vector<double> &lon,
-                            std::vector<int> &img_idx,
+                            std::vector<vector<int> > &qu_neighs,
                             double range)
 {
     if(lat.size() != lon.size())
@@ -97,33 +106,65 @@ void GPSNeighbour::find_neighbours( std::vector<double> &lat,
         cout << "The GPS data is not consistent"<<endl;
         return;
     }
-    vector<int> idx;
+    vector<int> qu_neigh_idx;
+    //for each query coordinate
     for( int i = 0; i < lat.size(); i++)
     {
         cout << "For Query image: " << i << "\t";
-        find_img_in_km(lat[i], lon[i], range, idx);
-        img_idx.insert(img_idx.end(), idx.begin(), idx.end());      //appending one vector to another
-        deleteDuplicates(img_idx);
-        idx.clear();
+        // finds neighbours for each query image
+        find_img_in_km(lat[i], lon[i], range, qu_neigh_idx);
+        qu_neighs.push_back(qu_neigh_idx);
+        // img_idx.insert(img_idx.end(), idx.begin(), idx.end());      //appending one vector to another
+        // deleteDuplicates(img_idx);
+        qu_neigh_idx.clear();
     }
-
-    cout<< "Total "<< img_idx.size() << " images were chosen out of " << img_names_.size() << endl;
 }
 
-void GPSNeighbour::print_neighbours(std::vector<int> &idx_in_range, const string &filename)
+//prints the names and coordinates of the image (lat, lon)
+void GPSNeighbour::print_neighbours_full(std::vector<vector<int> > &qu_neighs, const string &filename)
 {
     ofstream out(filename.c_str());
     if(!out)
     {
-        cout << "File " << filename << "have NOT been opened. No neighbours are stored"<<endl;
+        cout << "File " << filename << " has NOT been opened. No neighbours are stored"<<endl;
         return;
     }
-    for(vector<int>::iterator iter = idx_in_range.begin(); iter != idx_in_range.end(); ++iter)
+     // for each query
+    for( int i = 0; i < qu_neighs.size(); ++i)
     {
-        out << img_names_[*iter] << "\t" << img_lat_[*iter] << "\t" << img_lon_[*iter] << endl;
+        // for each neighbour of query i
+        for(int j=0; j < qu_neighs[i].size(); ++j)
+        {
+            out << i << "\t" << img_names_[qu_neighs[i][j]] 
+                     << "\t" << img_lat_[qu_neighs[i][j]] 
+                     << "\t" << img_lon_[qu_neighs[i][j]] << endl;
+        }
     }
     out.close();
-    cout << "The neighbouring image names were written to " << filename << endl;
+    cout << "Full version of neighbouring images is written to " << filename << endl;
+}
+
+void GPSNeighbour::write_query_neighbours(vector<vector<int> > &qu_neighs, const string &filename)
+{
+    ofstream out(filename.c_str());
+    if(!out)
+    {
+        cout << "File " << filename << " has NOT been opened. No neighbours are stored"<<endl;
+        return;
+    }
+    // for each query
+    for( int i = 0; i < qu_neighs.size(); ++i)
+    {
+        out << i << "\t" << qu_neighs[i].size() << "\t";
+        // for each neighbour of query i
+        for(int j=0; j < qu_neighs[i].size(); ++j)
+        {
+            out << qu_neighs[i][j] << "\t";
+        }
+        out << endl;
+    }
+    out.close();
+    cout << "Short version of neighbours is written to: "<< filename << endl;
 }
 
 
